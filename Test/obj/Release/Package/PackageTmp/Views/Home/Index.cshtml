@@ -1,0 +1,164 @@
+﻿@model Test.Models.Model
+@{
+    ViewBag.Title = "Bus Reservation System";
+}
+
+
+    @using (Html.BeginForm())
+    {
+            <div class="myBox jumbotron">
+                <br />
+                <div class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <label>
+                        Depart<br />
+                        @Html.DropDownListFor(x => x.Depart,
+                          new[]
+                              {
+                                                   new SelectListItem()
+                                                   {
+                                                       Text = "Liverpool",
+                                                       Value = "Liverpool"
+                                                   },
+                                                   new SelectListItem()
+                                                   {
+                                                       Text = "Manchester",
+                                                       Value = "Manchester"
+                                                   },
+                                                   new SelectListItem()
+                                                   {
+                                                       Text = "Leicester",
+                                                       Value = "Leicester"
+                                                   },
+                                                   new SelectListItem()
+                                                   {
+                                                       Text = "London",
+                                                       Value = "London"
+                                                   },
+                          },
+                          "Choose an option"
+                       )
+                    </label>
+                    <label>
+                        Arrive<br />
+                        @Html.DropDownListFor(x => x.Arrive,
+                          new[]
+                          {
+                                                   new SelectListItem()
+                                                   {
+                                                       Text = "Liverpool",
+                                                       Value = "Liverpool"
+                                                   },
+                                                   new SelectListItem()
+                                                   {
+                                                       Text = "Manchester",
+                                                       Value = "Manchester"
+                                                   },
+                                                   new SelectListItem()
+                                                   {
+                                                       Text = "Leicester",
+                                                       Value = "Leicester"
+                                                   },
+                                                   new SelectListItem()
+                                                   {
+                                                       Text = "London",
+                                                       Value = "London"
+                                                   },
+                          },
+                          "Choose an option"
+                       )
+                    </label>
+                    <label>
+                        Passengers <br />
+                        @Html.DropDownListFor(x => x.Adults,
+                          new[]
+                              {
+                                                   new SelectListItem()
+                                                   {
+                                                       Text = "1",
+                                                       Value = "1"
+                                                    
+                                                   },
+                                                   new SelectListItem()
+                                                   {
+                                                       Text =  "2",
+                                                       Value = "2"
+                                                   },
+                                                   new SelectListItem()
+                                                   {
+                                                       Text = "3",
+                                                       Value = "3"
+                                                   },
+                                                   new SelectListItem()
+                                                   {
+                                                       Text = "4",
+                                                       Value = "4"
+                                                   },
+                                                   new SelectListItem()
+                                                   {
+                                                       Text = "5",
+                                                       Value = "5"
+                                                   },
+                          },
+                          "Adults"
+                       )
+                    </label>
+                    @Html.DropDownListFor(x => x.Kids,
+                          new[]
+                              {
+                                                   new SelectListItem()
+                                                   {
+                                                       Text = "1",
+                                                       Value = "1"
+                                                   },
+                                                   new SelectListItem()
+                                                   {
+                                                       Text =  "2",
+                                                       Value = "2"
+                                                   },
+                                                   new SelectListItem()
+                                                   {
+                                                       Text = "3",
+                                                       Value = "3"
+                                                   },
+                                                   new SelectListItem()
+                                                   {
+                                                       Text = "4",
+                                                       Value = "4"
+                                                   },
+                                                   new SelectListItem()
+                                                   {
+                                                       Text = "5",
+                                                       Value = "5"
+                                                   },
+                          },
+                          "Kids"
+                       )
+
+                    @Html.EditorFor(model => model.DepartDate)
+                    <label>
+                        One Way @Html.CheckBoxFor(m => m.oneWay)
+                    </label>
+                </div>
+                    <br />
+                    <br />
+                    <input type="submit" class="btn btn-primary btn-lg" value="Book Now" />
+                    <br />
+                    @Html.ValidationMessageFor(m => m.Adults)
+                    <br />
+                    @Html.ValidationMessageFor(m => m.Depart)
+                    <br />
+                    @Html.ValidationMessageFor(m => m.Arrive)
+                    <br />
+                    @Html.ValidationMessageFor(m => m.DepartDate)
+                    <br />
+                    @ViewBag.Message
+                    <br />
+                    <br />
+
+                </div>
+         <br />
+        <br />
+
+
+
+        }

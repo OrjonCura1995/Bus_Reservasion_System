@@ -1,0 +1,105 @@
+﻿@model Test.Models.Model
+
+@using (Html.BeginForm("ReturnJourneyTime", "Home"))
+{
+    @Html.HiddenFor(m => m.averPrice);
+    @Html.HiddenFor(m => m.oneWay);
+    @Html.HiddenFor(m => m.total);
+    @Html.HiddenFor(m => m.Arrive);
+    @Html.HiddenFor(m => m.Depart);
+    @Html.HiddenFor(m => m.Adults);
+    @Html.HiddenFor(m => m.Kids);
+
+
+    switch (Model.Depart)
+    {
+        case "London":
+            switch (Model.Arrive)
+            {
+                case "Liverpool":
+                    Model.averPrice = 13.80;
+                    Model.averDuration = 6;
+                    break;
+                case "Manchester":
+                    Model.averPrice = 11;
+                    Model.averDuration = 5;
+                    break;
+                case "Leicester":
+                    Model.averPrice = 7;
+                    Model.averDuration = 3;
+                    break;
+            }
+            break;
+
+        case "Liverpool":
+            switch (Model.Arrive)
+            {
+                case "London":
+                    Model.averPrice = 13.80;
+                    Model.averDuration = 6;
+                    break;
+                case "Manchester":
+                    Model.averPrice = 7;
+                    Model.averDuration = 1;
+                    break;
+                case "Leicester":
+                    Model.averPrice = 20;
+                    Model.averDuration = 7;
+                    break;
+            }
+            break;
+
+        case "Manchester":
+            switch (Model.Arrive)
+            {
+                case "London":
+                    Model.averPrice = 11;
+                    Model.averDuration = 5;
+                    break;
+                case "Liverpool":
+                    Model.averPrice = 7;
+                    Model.averDuration = 1;
+                    break;
+                case "Leicester":
+                    Model.averPrice = 18;
+                    Model.averDuration = 5;
+                    break;
+            }
+            break;
+
+        case "Leicester":
+            switch (Model.Arrive)
+            {
+                case "London":
+                    Model.averPrice = 7;
+                    Model.averDuration = 3;
+                    break;
+                case "Liverpool":
+                    Model.averPrice = 20;
+                    Model.averDuration = 7;
+                    break;
+                case "Manchester":
+                    Model.averPrice = 18;
+                    Model.averDuration = 5;
+                    break;
+            }
+            break;
+
+    }
+
+    <div class="myBox jumbotron">
+        <h2>Leaving  @Model.ReturnDate.Value.ToString("d") </h2>
+        <h2>From @Model.Depart To @Model.Arrive</h2>
+        <table class="table table-striped table-hover " style="width:100%; font-family:'Times New Roman Georgia' ; ">
+            <tr>   <td>Departs</td> <td>Arrives</td>                                                        <td>Duration</td>                                                       <td>Changes</td>    <td>Fares from*</td>  <td> </td> </tr>
+            <tr>    <td>  </td> <td> </td>   <td> </td>    <td>  </td>  <td>  </td>  </tr>
+
+            <tr>    <td>11:00</td> <td>@(TimeSpan.FromHours(Model.averDuration + 11.00))</td>                                          <td>@(TimeSpan.FromMinutes(Model.averDuration)) H </td>                                         <td>0</td>         <td>@(string.Format("{0:0.00}", (Model.averPrice + (Model.averPrice / 3))))  </td><td>@Html.CheckBoxFor(m => m.Ch1)  </td></tr>
+            <tr>    <td>14:50</td> <td>@(TimeSpan.FromHours(((Model.averDuration + (Model.averDuration / 3)) + 14.50)))</td>           <td>@(TimeSpan.FromMinutes((Model.averDuration + (Model.averDuration / 3)))) H</td>             <td>1</td>         <td>@(string.Format("{0:0.00}", Model.averPrice))                            </td><td>@Html.CheckBoxFor(m => m.Ch2) </td></tr>
+            <tr>    <td>16:20</td> <td>@(TimeSpan.FromHours((Model.averDuration + 16.20)))</td>                                        <td>@(TimeSpan.FromMinutes(Model.averDuration)) H</td>                                  <td>0</td>                 <td>@(string.Format("{0:0.00}", Model.averPrice))                            </td><td>@Html.CheckBoxFor(m => m.Ch3) </td></tr>
+            <tr>    <td>22:15</td> <td>@(TimeSpan.FromHours(((Model.averDuration + 22.15) + (Model.averDuration / 3)))) </td>          <td>@(TimeSpan.FromMinutes(((Model.averDuration + (Model.averDuration / 3))))) H</td>           <td>1</td>         <td>@(string.Format("{0:0.00}", (2 * Model.averPrice)))                      </td><td>@Html.CheckBoxFor(m => m.Ch4) </td></tr>
+            <tr>    <td>23:55</td> <td>@(TimeSpan.FromHours((Model.averDuration + 23.55)))</td>                                        <td>@(TimeSpan.FromMinutes(Model.averDuration)) H</td>                                          <td>0</td>         <td>@(string.Format("{0:0.00}", Model.averPrice))                            </td><td>@Html.CheckBoxFor(m => m.Ch5) </td></tr>
+        </table>
+        <input type="submit" class="btn btn-primary btn-lg" value="Submit" />
+    </div>
+            } 

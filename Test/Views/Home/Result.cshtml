@@ -1,0 +1,11 @@
+﻿@model Test.Models.Model
+
+
+@Html.HiddenFor(m => m.averPrice);
+@Html.HiddenFor(m => m.total);
+@Html.HiddenFor(m => m.Adults);
+@Html.HiddenFor(m => m.Kids);
+
+<div class="myBox jumbotron">
+    <h1>The Total Amount Is : @(string.Format("{0:0.00}", (Model.total * Convert.ToInt32(Model.Adults)) + (Model.total * (Convert.ToInt32(Model.Kids/2)))   ))</h1>
+</div>
